@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+  
+int main()
+{
+    char* ptr;
+    int i, n = 5;
+
+  
+    ptr = (char *)malloc(sizeof(char) * n);
+  
+    if (ptr == NULL) {
+        printf("Memorija se nije uspjela alocirati!\n");
+        exit(0);
+    } else {
+        
+        // ptr = (char *) realloc(ptr, sizeof(char) * 10);
+        
+        //Punjenje liste...
+        for (i = 0; i < n; ++i) {
+            ptr[i] = 'a';
+        }
+        
+        //Ispis...
+        for (i = 0; i < n; ++i) {
+            printf("%c ", ptr[i]);
+        }
+    }
+  
+    return 0;
+}
