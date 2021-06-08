@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+void foo(int broj) {
+    broj = 5;
+    printf("Vrijednost od a u funkciji foo je %d, u adresi %p \n", broj, &broj);
+}
+void bar(int *broj){
+    *broj = 100;
+    printf("Vrijednost od a u funkciji foo je %d, u adresi %p \n", *broj, broj);
+}
+
+int main()
+{
+    int a = 1;
+    
+    printf("Vrijednost od a prije foo je %d, u adresi %p \n", a, &a);
+    foo(a);
+    printf("Vrijednost od a poslije foo je %d, u adresi %p \n", a, &a);
+    
+    printf("\n-----\n\n");
+    
+    int b = 10;
+    printf("Vrijednost od a prije foo je %d, u adresi %p \n", b, &b);
+    bar(&b);
+    printf("Vrijednost od b poslije foo je %d, u adresi %p \n", b, &b);
+    
+}
