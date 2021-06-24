@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+void foo(int *pokazivac) {
+    printf("Napravi se NOVA varijabla pokazivac sa vrijednosti: %p\n", pokazivac);
+    printf("Ta nova varijabla je na adresi: %p\n", &pokazivac);
+    printf("Vrijednost na adresi na koju pokazuje varijabla pokazivac unutar funckije foo: %d\n", *pokazivac);
+}
+
+
+int main()
+{
+    int a = 10;
+    int *pa;
+    pa = &a;
+    
+    printf("Vrijednost od a je %d, na adresi %p \n", a, &a);
+    printf("Vrijednost od pa je %p (dakle, ista kao adresa od a), na adresi %p \n", pa, &pa);
+    printf("Kod: '*pa' ce ispisati vrijednost varijable a: %d\n", *pa);
+    
+    printf("\n-----\n\n");
+    
+    foo(pa);
+
+}

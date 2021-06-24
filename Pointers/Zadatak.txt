@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+//Posto prosljedjujemo adresu brojeva ovdje, ne moramo interaktirati sa varijablama
+//Nego mozemo direktno mijenjati varijablu koju smo proslijedili kao rezultat
+void zbrojac(int *br1, int *br2, int *rezultat) {
+    *rezultat = *br1 + *br2;
+}
+
+
+int main()
+{
+    int a = 5;
+    int b = 10;
+    int zbroj = -1;
+    
+    zbrojac(&a, &b, &zbroj);
+    
+    printf("Zbroj brojeva %d i %d je %d", *(&a), b, zbroj);
+}
