@@ -1,0 +1,30 @@
+// Program iz dane liste ispisuje sve stringove kojima je prvo i zadnje slovo jednako
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+int main() {
+    //niz je dvodimenzionalna lista, prvi argument je broj polja, drugi je maksimalna duljina
+    char niz[10][10]={"ana","pero","marko","luka","igor","ante","pavao","lea"};
+    int i,j;
+    //int vel;
+
+    //Ako ne znamo duljinu liste unaprijed onda je moramo ovako prebrojati
+    //for (vel = 0; *niz[vel] != NULL; vel++);
+    
+    //Ona ga je tako rjesila, premda u zadatku naglasi da je 10 pa se moze rjesiti ovako
+    //Ako je obavezno rjesiti na njen nacin, onda dole samo u obe for petlje umjesto '10' i '10-1' staviti 'vel' i 'vel-1'
+   
+
+    //Za svaki clan liste (niz[i]), usporedi mu prvi (niz[i][0]) i zadnji (niz[i][duljina imena - 1]) karakter sa svim ostalim rijecima
+    //- 1 mora biti jer je zadnji karakter '/0'
+    for(i = 0; i < 10; i++) {
+        //'j' mora biti jednako 'i+1' da se string ne usporedjuje sam sa sobom
+        for (j = i+1; j < 10-1; j++) {
+            if ( (niz[i][0] == niz[j][0]) && (niz[i][strlen(niz[i])-1] == niz[j][strlen(niz[j])-1]) ){
+                printf("%s ima isto pocetno i kranje slovo kao %s\n", niz[i], niz[j]);
+            }
+        }
+    }
+    
+}

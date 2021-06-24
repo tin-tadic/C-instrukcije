@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    char* prviString;
+    char* drugiString;
+    char unos[20];
+    char malaSlova[20];
+    int brojac = 0, i;
+    
+    
+    printf("Upisite string iz kojeg zelite izvuci samo mala slova: ");
+    gets(unos);
+    
+    //Alokacija memorije
+    prviString = (char*)malloc(sizeof(char) * strlen(unos));
+    strcpy(prviString, unos);
+
+    //Za svaki string provjerimo je li unutar brojevnog raspona malih slova
+    for(i = 0; i < strlen(unos); i++) {
+        
+        //Ova linija se oslanja na pokazivac prviString, te nacin na koji C 
+        //sprema stringove u memoriju: *prviString je adresa nultog (prvog)
+        //slova, dok je 'i' pomak. Detaljnije objasniti po potrebi
+        if( *(prviString + i) >= 96 && *(prviString + i) <= 123 ) {
+            //Ova zakomentirana linija ispisuje malo slovo koje trenutno gledamo
+            //printf("\n%c", *(prviString + i));
+            
+            malaSlova[brojac++] = *(prviString + i);
+        }
+    }
+    
+    //Moramo zatvoriti sa "\0" da ne bude smeca pri ispisu
+    malaSlova[brojac] = '\0';
+    
+    //Alokaciaj memorije za drugi string
+    drugiString = (char*)malloc(sizeof(char) * strlen(malaSlova));
+    strcat(drugiString, malaSlova);
+    
+    printf("%s", drugiString);
+
+    return 0;
+}
