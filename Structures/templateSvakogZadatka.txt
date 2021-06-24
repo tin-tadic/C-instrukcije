@@ -1,0 +1,81 @@
+// Formirati strukturu zivotinja koje se sastoji od ... Inicijalizirati niz od 10...
+// Uspisati redom sve zivotinje (vrstu) i skupine kojima pripadaju, ako im je staniste "more"
+// Nekada zna zadati da se i mora DODATNO sortirati po skupinama nakon vrste... y tho... za 2 boda zadatak??
+
+#include <stdio.h>
+#include <string.h>
+
+//Definicija strukture koja nam treba
+struct Zivotinja {
+   char vrsta[50];
+   char skupina[50];
+   char staniste[50];
+};
+ 
+int main( ) {
+    int i, j, brojMorskih;
+    char unos[50];
+
+    //Deklaracija array-a od 10 struktura
+    struct Zivotinja zivotinje[10];
+    //Ako zelimo deklarirati samo jednu (ili vise razlicitih) struktura:
+    //struct Zivotinja imeNekeZivotinje;
+   
+   //Inicijalizacija svih zivotinja
+   //NAPOMENA: int tip podatka se inicijalizira na nacin:
+   // 'imeVarijable.svojstvo = broj;'
+   //npr. da Zivotinja ima svojstvo 'dob' onda bi to bilo:
+   //' lisica.dob = 3;'
+   for (i = 0; i < 3; i++) {
+        printf("Upisite vrstu zivotinje: ");
+        //moze i gets_s() ili gets(), priznati ce sve
+        scanf("%s", unos);
+        strcpy(zivotinje[i].vrsta, unos);
+        
+        printf("Upisite skupinu zivotinje: ");
+        scanf("%s", unos);
+        strcpy(zivotinje[i].skupina, unos);
+        
+        printf("Upisite staniste zivotinje: ");
+        scanf("%s", unos);
+        strcpy(zivotinje[i].staniste, unos);
+        
+        printf("\nUpis jedne zivotinje gotov, pocinje upis sljedece zivotinje.\n\n");
+   }
+   printf("Upis gotov.\n\n\n");
+   
+   
+   //Zadatak se dalje moze rjesiti na vise nacina, ali mi cemo to na najjednostavniji
+   //Kopiramo sve zivotinje koje odgovaraju uvjetu (staniste == more) u novu listu zivotinja,
+   //te tu listu sortiramo po vrsti, kako je zadano u zadatku
+   
+   //Ovu inicijalizaciju mozemo na vrhu odraditi (i trebali bi)
+   struct Zivotinja morskeZivotinje[10];
+   struct Zivotinja pom;
+   
+   //Izoliranje svake zivotinje koja odgovara uvjetu u zadatku
+   for (i = 0; i < 10; i++) {
+       if (strcmp(zivotinje[i].staniste, "more") == 0) {
+            morskeZivotinje[brojMorskih++] = zivotinje[i];
+       } 
+   }
+   
+   //Usporedi stringove i sortiraj ih. Jednostavna swap petlja
+   for (i = 0; i < brojMorskih; i++) {
+        for (j = 1; j < brojMorskih; j++) {
+            if ( strcmp(morskeZivotinje[i].vrsta, morskeZivotinje[j].vrsta) > 0) {
+                pom = morskeZivotinje [i];
+                morskeZivotinje[i] = morskeZivotinje[j];
+                morskeZivotinje[j] = pom;
+            }
+        }
+   }
+   
+   //Ispis nakon sto smo sortirali
+   printf("Morske zivotinje su:\n");
+   for (i = 0; i < brojMorskih; i++) {
+       printf("Zivotinja vrste %s, skupine %s.\n", morskeZivotinje[i].vrsta, morskeZivotinje[i].skupina);
+   }
+ 
+   return 0;
+}
